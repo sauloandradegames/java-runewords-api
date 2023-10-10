@@ -7,10 +7,27 @@ Java RESTful API for saving information about runewords in Diablo 2 and related 
 ```mermaid
 classDiagram
     class Runeword {
-        Name: String
-        Runes: Array<String>
-        Equipment: Array<String>
-        Level: Integer
-        Attributes: Array<String>
+        name: String
+        rune: Array<String>
+        equipment: Array<String>
+        level: Integer
+        attribute: Array<String>
     }
+
+    class Rune {
+        icon: String
+        name: String
+    }
+
+    class Equipment {
+        name: String
+    }
+
+    class Attribute {
+        description: String
+    }
+
+    Runeword "1"-->"*" Rune : have
+    Runeword "1"-->"*" Equipment : equipable
+    Runeword "1"-->"*" Attribute : have
 ```

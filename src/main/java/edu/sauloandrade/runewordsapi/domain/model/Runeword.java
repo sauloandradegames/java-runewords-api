@@ -2,10 +2,15 @@ package edu.sauloandrade.runewordsapi.domain.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
+@Entity(name = "tb_runeword")
 public class Runeword {
     // Attributes
     @Id
@@ -13,22 +18,31 @@ public class Runeword {
     private Long id;
 
     private String name;
-    private List<String> runes;
-    private List<String> equipment;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Rune> runes;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Equipment> equipments;
+
     private Integer level;
-    private List<String> attributes;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Attribute> attributes;
 
     // Getters
+    public Long getId() {return id;}
     public String getName() {return name;}
-    public List<String> getRunes() {return runes;}
-    public List<String> getEquipment() {return equipment;}
+    public List<Rune> getRunes() {return runes;}
+    public List<Equipment> getEquipments() {return equipments;}
     public Integer getLevel() {return level;}
-    public List<String> getAttributes() {return attributes;}
+    public List<Attribute> getAttributes() {return attributes;}
 
     // Setters
+    public void setId(Long id) {this.id = id;}
     public void setName(String name) {this.name = name;}
-    public void setRunes(List<String> runes) {this.runes = runes;}
-    public void setEquipment(List<String> equipment) {this.equipment = equipment;}
+    public void setRunes(List<Rune> runes) {this.runes = runes;}
+    public void setEquipments(List<Equipment> equipments) {this.equipments = equipments;}
     public void setLevel(Integer level) {this.level = level;}
-    public void setAttributes(List<String> attributes) {this.attributes = attributes;}
+    public void setAttributes(List<Attribute> attributes) {this.attributes = attributes;}
 }
